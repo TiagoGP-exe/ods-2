@@ -3,32 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AdonisJS - A fully featured web framework for Node.js</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <title>ODS - 2</title>
   @entryPointStyles('app')
   @entryPointScripts('app')
 </head>
-<body>
+<body class="bg-slate-800">
 
-  <main>
-    <div>
-      <h1 class="text-red-500"> It Works! </h1>
-      <p class="subtitle">
+  <main class=" min-h-screen flex items-center justify-center ">
+    <div class="flex flex-col items-center">
+      <img class="w-32 h-32" src="/assets/logo.png" />
+      <h1 class="text-white font-bold text-5xl mt-8"> It Works! </h1>
+      <p class="text-slate-300 text-md max-w-xs text-center mt-2 mb-4">
         Congratulations, you have just created your first AdonisJS app.
       </p>
 
-      <ul>
-        <li>
-          The route for this page is defined inside <code>start/routes.ts</code> file
-        </li>
-
-        <li>
-          You can update this page by editing <code>resources/views/welcome.edge</code> file
-        </li>
-
-        <li>
-          If you run into problems, you can reach us on <a href="https://discord.gg/vDcEjq6?">Discord</a> or the <a href="https://forum.adonisjs.com/">Forum</a>.
-        </li>
-      </ul>
+     
+      <button class="bg-black text-white font-bold px-5 py-2 rounded-md active:scale-90 duration-75 ">
+        Click
+      </button>
     </div>
   </main>
 </body>
