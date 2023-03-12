@@ -17,6 +17,25 @@ services:
       test: ['CMD', 'pg_isready', '-q', '-d', '${PG_DB_NAME}', '-U', '${PG_USER}']
       retries: 3
       timeout: 5s
+
+  web:
+    container_name: ods_backend
+    restart: always
+    depends_on:
+      - postgres-comp
+    build:
+      context: .
+      target: dependencies
+    ports:
+      - ${PORT}:${PORT}
+    env_file:
+      - .env
+    environment:
+      - PG_HOST=postgres-comp
+    volumes:
+      - ./:/home/node/app
+    command: dumb-init node ace serve -w
+
 networks:
   postgres-compose-network:
     driver: bridge

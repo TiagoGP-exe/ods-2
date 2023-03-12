@@ -6,9 +6,6 @@ export default class TipoAtividade extends BaseModel {
   public tipoAtividadeId: number
 
   @column()
-  public userId: number
-
-  @column()
   public descricao: string
 
   @column.dateTime({ autoCreate: true })

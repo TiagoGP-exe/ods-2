@@ -1,33 +1,31 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { AttachmentContract, attachment } from '@ioc:Adonis/Addons/AttachmentLite'
 
 export default class AtividadeComplementar extends BaseModel {
   @column({ isPrimary: true })
   public atividadeComplementarId: number
 
   @column()
-  public userId: number
-
-  @column()
   public alunoId: number
 
   @column()
-  public tipoatividadeid: number
+  public tipoAtividadeId: number
 
   @column()
-  public descricaoatividade: string
+  public descricaoAtividade: string
 
   @column()
-  public cargahoraria: number
+  public cargaHoraria: number
 
   @column()
   public instituicao: string
 
   @column()
-  public anoconclusao: DateTime
+  public anoConclusao: number
 
-  @column()
-  public arquivo: string
+  @attachment({ preComputeUrl: true })
+  public arquivo: AttachmentContract
 
   @column()
   public observacao: string

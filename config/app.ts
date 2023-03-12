@@ -108,8 +108,8 @@ export const http: ServerConfig = {
     path: '/',
     maxAge: '2h',
     httpOnly: true,
-    secure: false,
-    sameSite: false,
+    secure: Application.inProduction,
+    sameSite: true,
   },
 }
 
@@ -164,7 +164,7 @@ export const logger: LoggerConfig = {
   | can have huge impact on performance.
   |
   */
-  prettyPrint: Env.get('NODE_ENV') === 'development',
+  prettyPrint: Application.inDev,
 }
 
 /*

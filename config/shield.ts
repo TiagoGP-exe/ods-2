@@ -7,6 +7,7 @@
 
 // import Env from '@ioc:Adonis/Core/Env'
 import { ShieldConfig } from '@ioc:Adonis/Addons/Shield'
+import Application from '@ioc:Adonis/Core/Application'
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,7 @@ export const csp: ShieldConfig['csp'] = {
   | The CSP rules are disabled by default for seamless onboarding.
   |
   */
-  enabled: false,
+  enabled: Application.inProduction,
 
   /*
   |--------------------------------------------------------------------------
@@ -44,7 +45,12 @@ export const csp: ShieldConfig['csp'] = {
   | }
   |
   */
-  directives: {},
+  directives: {
+    defaultSrc: ["'self'", '@nonce'],
+    fontSrc: ["'self'", 'fonts.googleapis.com', 'fonts.gstatic.com'],
+    styleSrc: ["'self'", 'fonts.googleapis.com', 'fonts.gstatic.com'],
+    frameAncestors: ["'none'"],
+  },
 
   /*
   |--------------------------------------------------------------------------
@@ -233,5 +239,5 @@ export const hsts: ShieldConfig['hsts'] = {
 |
 */
 export const contentTypeSniffing: ShieldConfig['contentTypeSniffing'] = {
-  enabled: true,
+  enabled: false,
 }
