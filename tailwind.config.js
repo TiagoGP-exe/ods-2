@@ -4,7 +4,12 @@ module.exports = {
     './resources/**/*.{edge,js,ts,jsx,tsx}', // 👈
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        xs: '420px',
+        lg: '1120px',
+      },
+    },
   },
   plugins: [],
 }

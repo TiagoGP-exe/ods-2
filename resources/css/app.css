@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 * {
-  font-family: 'Spline Sans', sans-serif;
+  font-family: 'Syne', sans-serif;
+}
+
+*:focus {
+  outline: none;
 }
