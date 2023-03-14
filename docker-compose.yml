@@ -8,7 +8,7 @@ services:
       - POSTGRES_DB=${PG_DB_NAME}
 
     ports:
-      - '5432:5432'
+      - 5432:5432
     volumes:
       - postgres-compose-volume:/var/lib/postgresql/data
     networks:
@@ -17,6 +17,25 @@ services:
       test: ['CMD', 'pg_isready', '-q', '-d', '${PG_DB_NAME}', '-U', '${PG_USER}']
       retries: 3
       timeout: 5s
+
+  web:
+    restart: always
+    depends_on:
+      - postgres-comp
+    build:
+      context: .
+      target: dependencies
+    ports:
+      - ${PORT}:${PORT}
+      - 8080:8080
+    env_file:
+      - .env
+    environment:
+      - PG_HOST=postgres-comp
+    volumes:
+      - ./:/home/node/app
+    command: dumb-init node ace serve --watch --encore-args="--host ${HOST} --port 8080"
+
 networks:
   postgres-compose-network:
     driver: bridge
