@@ -20,6 +20,14 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/', async ({ view }) => {
-  return view.render('welcome')
-})
+Route.resource('login', 'LoginController').only(['index', 'store'])
+
+Route.resource('register', 'RegistersController').only(['index', 'store'])
+
+Route.group(() => {
+  Route.get('/', async ({ view }) => {
+    return view.render('home')
+  })
+
+  Route.delete('/logout', 'LoginController.destroy')
+}).middleware(['auth:web'])

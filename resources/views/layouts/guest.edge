@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <title>{{ title }}</title>
+
+  @entryPointStyles('app')
+  @entryPointScripts('app')
+
+  @!section('head')
+</head>
+
+<body>
+  <main class="min-h-screen flex items-center justify-center">
+    <img src="https://play.tailwindcss.com/img/beams.jpg" alt="background"
+      class="absolute -z-10 max-w-none  max-h-screen" width="100%">
+    <div class="flex flex-col items-center w-full">
+      @!section('body')
+    </div>
+  </main>
+</body>
+
+</html>

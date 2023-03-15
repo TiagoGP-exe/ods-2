@@ -1,0 +1,98 @@
+@layout('layouts/guest')
+@set('title', 'Homepage - ODS2')
+
+@section('body')
+<form class="flex flex-col justify-center items-center gap-3 
+      bg-gray-50/70 w-11/12 max-w-sm md:max-w-md xs:min-h-[26rem] 
+      px-6 py-12 xs:px-10 xs:py-6 rounded-3xl border border-gray-200" action="{{ route('RegistersController.store') }}"
+  method="POST">
+
+  <h1 class="font-bold text-4xl mb-5">ODS - II</h1>
+  {{ csrfField() }}
+
+  <main class="flex flex-col gap-2">
+    <div class="flex flex-col md:flex-row gap-2">
+      @!field({
+      label: 'Name',
+      name: 'name',
+      type: 'text',
+      placeholder: 'Enter your name',
+      containerClassName: 'w-full',
+      })
+
+      @!field({
+      label: 'CPF',
+      name: 'cpf',
+      type: 'text',
+      maxlength: 11,
+      pattern: '[0-9]{11}',
+      placeholder: 'Enter your CPF',
+      containerClassName: 'w-full',
+      description: 'Digite apenas números',
+      })
+    </div>
+
+    <div class="flex flex-col md:flex-row gap-2">
+      @!field({
+      label: 'Email',
+      name: 'email',
+      type: 'email',
+      placeholder: 'Enter your email',
+      containerClassName: 'w-full',
+      })
+
+      @!field({
+      label: 'Matricula',
+      name: 'matricula',
+      type: 'number',
+      placeholder: 'Enter your matricula',
+      containerClassName: 'w-full ',
+      className: 'appearance-none',
+      })
+    </div>
+
+    <div class="flex flex-col md:flex-row gap-2">
+      @!field({
+      label: 'Telefone',
+      name: 'telefone',
+      type: 'text',
+      maxlength: 11,
+      pattern: '[0-9]{11}',
+      placeholder: 'Enter your telefone',
+      containerClassName: 'w-full',
+      description: 'Digite apenas números',
+      })
+
+      @!field({
+      label: 'Password',
+      name: 'password',
+      type: 'password',
+      placeholder: 'Enter your password',
+      containerClassName: 'w-full',
+      })
+    </div>
+  </main>
+
+
+  <div class=" flex items-center justify-center my-2 gap-2">
+    <input type="checkbox" name="remember" id="remember" class="w-4 h-4 accent-black">
+    <label for=" remember" class="text-gray-400 text-sm">Remember me</label>
+  </div>
+
+  <div class="w-full flex items-center gap-2 ">
+    @!divider()
+    @!button({
+    text: 'Submit',
+    type: 'submit',
+    className: 'active:bg-gray-800',
+    })
+    @!divider()
+  </div>
+
+
+  <h3>
+    <a href="/login" class="text-gray-400 hover:text-gray-700 duration-100">Login</a>
+  </h3>
+
+</form>
+@end
