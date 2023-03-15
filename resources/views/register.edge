@@ -1,17 +1,17 @@
 @layout('layouts/guest')
-@set('title', 'Homepage - ODS2')
+@set('title', 'Register - ODS2')
 
 @section('body')
 <form class="flex flex-col justify-center items-center gap-3 
-      bg-gray-50/70 w-11/12 max-w-sm md:max-w-md xs:min-h-[26rem] 
+      bg-gray-50/70 w-11/12 max-w-sm sm:max-w-md xs:min-h-[26rem] 
       px-6 py-12 xs:px-10 xs:py-6 rounded-3xl border border-gray-200" action="{{ route('RegistersController.store') }}"
   method="POST">
 
   <h1 class="font-bold text-4xl mb-5">ODS - II</h1>
   {{ csrfField() }}
 
-  <main class="flex flex-col gap-2">
-    <div class="flex flex-col md:flex-row gap-2">
+  <main class="flex flex-col gap-2 w-full">
+    <div class="flex flex-col sm:flex-row gap-2">
       @!field({
       label: 'Name',
       name: 'name',
@@ -32,7 +32,7 @@
       })
     </div>
 
-    <div class="flex flex-col md:flex-row gap-2">
+    <div class="flex flex-col sm:flex-row gap-2">
       @!field({
       label: 'Email',
       name: 'email',
@@ -51,7 +51,7 @@
       })
     </div>
 
-    <div class="flex flex-col md:flex-row gap-2">
+    <div class="flex flex-col sm:flex-row gap-2">
       @!field({
       label: 'Telefone',
       name: 'telefone',
