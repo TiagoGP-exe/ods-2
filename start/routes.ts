@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /*
 |--------------------------------------------------------------------------
 | Routes
@@ -31,3 +32,6 @@ Route.group(() => {
 
   Route.delete('/logout', 'LoginController.destroy')
 }).middleware(['auth:web'])
+
+
+Route.get('/tipo_atividade','TipoAtividade.index');
