@@ -4,7 +4,7 @@ import TipoAtividade from "App/Models/TipoAtividade";
 
 
 export default class TipoAtividadeController {
-    public async index({request,response}:HttpContextContract){
+    public async index({response}:HttpContextContract){
         const data = await TipoAtividade.query()
         .select("tipoAtividadeId","descricao");
 
