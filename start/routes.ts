@@ -34,4 +34,4 @@ Route.group(() => {
 }).middleware(['auth:web'])
 
 
-Route.get('/tipo_atividade','TipoAtividade.index');
+Route.get('/tipo_atividade','TipoAtividadeController.index');
