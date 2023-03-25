@@ -2,7 +2,7 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
 import TipoAtividade from 'App/Models/TipoAtividade'
 
-export default class extends BaseSeeder {
+export default class TipoAtividadeSeeder extends BaseSeeder {
   public async run () {
     await TipoAtividade.createMany([
       {
