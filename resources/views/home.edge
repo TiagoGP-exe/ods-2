@@ -2,7 +2,38 @@
 @set('title', 'Homepage - ODS2')
 
 @section('body')
-<main class="min-h-screen flex items-center justify-center">
+<main class="min-h-screen flex items-start  justify-center">
   @include('partials/header')
+
+  <div class=" w-full max-w-screen-lg mt-32 px-4 sm:px-8 ">
+    <table class="table-fixed rounded-lg w-full border-collapse border border-slate-200">
+      <thead class="">
+        <tr>
+          <th class="border border-slate-300 py-2">Song</th>
+          <th class="border border-slate-300 py-2">Artist</th>
+          <th class="border border-slate-300 py-2">Year</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="border border-slate-300 py-1 px-2 ">The Sliding Mr. Bones (Next Stop, Pottersville)</td>
+          <td class="border border-slate-300 py-1 px-2 ">Malcolm Lockyer</td>
+          <td class="border border-slate-300 py-1 px-2 ">1961</td>
+        </tr>
+        <tr>
+          <td class="border border-slate-300 py-1 px-2 ">Witchy Woman</td>
+          <td class="border border-slate-300 py-1 px-2 ">The Eagles</td>
+          <td class="border border-slate-300 py-1 px-2 ">1972</td>
+        </tr>
+        <tr>
+          <td class="border border-slate-300 py-1 px-2 ">Shining Star</td>
+          <td class="border border-slate-300 py-1 px-2 ">Earth, Wind, and Fire</td>
+          <td class="border border-slate-300 py-1 px-2 ">1975</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
 </main>
 @end
