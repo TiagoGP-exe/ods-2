@@ -1,5 +1,4 @@
-FROM node:lts-alpine AS base
-RUN apk --no-cache add dumb-init
+FROM node:lts-slim AS base
 RUN mkdir -p /home/node/app && chown node:node /home/node/app
 WORKDIR /home/node/app
 USER node
@@ -21,4 +20,4 @@ COPY --chown=node:node ./package*.json ./
 RUN npm i --omit=dev
 COPY --chown=node:node --from=build /home/node/app/build .
 EXPOSE $PORT
-CMD [ "dumb-init", "node", "server.js" ]
+CMD [ "node", "server.js" ]
