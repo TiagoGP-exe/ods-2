@@ -1,0 +1,36 @@
+@layout('layouts/auth')
+@set('title', 'Homepage - ODS2')
+
+@set('SubjectsEnrolled', '')
+@set('AvailableMaterials', 'true')
+
+@section('body')
+<main class="min-h-screen flex items-start  justify-center sm:px-8">
+  @include('partials/header')
+
+  <form class='sm:px-8 w-11/12 flex flex-col pt-36 justify-center items-start gap-5  max-w-screen-xl'
+    action="{{ route('TipoAtividadeController.update', [id], {qs:{_method: 'PUT'}}) }}" method="POST">
+    {{ csrfField() }}
+    <h2 class=" font-bold text-2xl">
+      Adicionar nova Matéria
+    </h2>
+
+    @!field({
+    label: 'Description',
+    name: 'descricao',
+    type: 'text',
+    value: descricao,
+    placeholder: 'Enter your description',
+    initialValue: descricao,
+    containerClassName: 'w-full',
+    })
+
+    @!button({
+    text: 'Submit',
+    type: 'submit',
+    className: 'active:bg-gray-800',
+    })
+  </form>
+
+</main>
+@end

@@ -1,12 +1,14 @@
 @layout('layouts/auth')
 @set('title', 'Homepage - ODS2')
+@set('SubjectsEnrolled', 'true')
+@set('AvailableMaterials', '')
 
 @section('body')
 <main class="min-h-screen flex items-start  justify-center sm:px-8">
   @include('partials/header')
 
-  <div class='sm:px-8 w-11/12 flex justify-center  max-w-screen-lg'>
-    <div class="relative w-full  mt-32 border-[0.5px] overflow-x-auto rounded-md ">
+  <div class='sm:px-8 w-11/12 flex justify-center pt-36  max-w-screen-xl'>
+    <div class="relative w-full border-[0.5px] overflow-x-auto rounded-md ">
       <table class="w-full text-sm text-left ">
         <thead class="">
           <tr>

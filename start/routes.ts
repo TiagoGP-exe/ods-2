@@ -30,8 +30,21 @@ Route.group(() => {
     return view.render('home')
   })
 
+  Route.get('/tipo-atividade', 'TipoAtividadeController.index')
+
+  Route.get('/tipo-atividade/create', async ({ view }) => {
+    return view.render('tipoAtividade/create')
+  })
+
+  Route.post('/tipo-atividade', 'TipoAtividadeController.store')
+
+  Route.delete('/tipo-atividade/:id', 'TipoAtividadeController.destroy')
+
+  Route.get('/tipo-atividade/:id', 'TipoAtividadeController.show')
+
+  Route.put('/tipo-atividade/:id', 'TipoAtividadeController.update')
+
   Route.delete('/logout', 'LoginController.destroy')
 }).middleware(['auth:web'])
 
-
-Route.get('/tipo_atividade','TipoAtividadeController.index');
+Route.get('/tipo_atividade', 'TipoAtividadeController.index')

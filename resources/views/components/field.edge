@@ -4,7 +4,7 @@
   <label class="font-bold text-gray-600 tracking-wide {{labelClassName ?? ''}}" for="{{name}}-id">{{ label }}</label>
   <input aria-invalid="{{ isInvalid ? 'true' : 'false' }}" aria-describedby="{{name}}-description"
     class="py-3 px-4 rounded-md border placeholder:text-gray-300 text-sm {{ isInvalid ? 'border-red-500 focus:border-red-600' : 'border-gray-200 focus:border-blue-500' }} {{className ?? ''}}"
-    value="{{ type !== 'password' ? flashMessages.get(name) || '': ''}}" id="{{name}}-id"
+    value="{{ type !== 'password' ? (flashMessages.get(name) || initialValue) ?? '': ''}}" id="{{name}}-id"
     {{$props.serializeExcept(['containerClassName', 'labelClassName' , 'className' , 'label' , 'description' ])}}>
 
   @if(isInvalid)

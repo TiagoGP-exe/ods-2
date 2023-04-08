@@ -9,3 +9,15 @@
 *:focus {
   outline: none;
 }
+
+@media screen and (max-width: 1080px) {
+  html {
+    font-size: 93.75%; /* 15px */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 87.5%; /* 14px */
+  }
+}

@@ -1,0 +1,92 @@
+@layout('layouts/auth')
+@set('title', 'Homepage - ODS2')
+
+@set('SubjectsEnrolled', '')
+@set('AvailableMaterials', 'true')
+
+@section('body')
+<main class="min-h-screen flex items-start  justify-center sm:px-8">
+  @include('partials/header')
+
+  <div class='sm:px-8 w-11/12 flex flex-col pt-36 justify-center  max-w-screen-xl'>
+
+
+    @if(data.length == 0)
+    <div class="flex flex-col items-center justify-center w-full py-10 rounded border-dashed border-2">
+      <h1 class="text-2xl font-bold text-center">Nenhuma máteria encontrada</h1>
+      <p class="text-sm text-center">Para isso adicione ao menos uma máteria</p>
+
+      <a href="/tipo-atividade/create">
+        @!button({
+        text: 'Adicionar Matéria',
+        type: 'submit',
+        className: 'text-red-500 rounded-md text-sm mt-5',
+        })
+      </a>
+    </div>
+    @else
+
+    <div class="flex flex-col items-end">
+
+      <div class="flex items-start justify-between w-full mb-5">
+
+        <h3 class="text-2xl font-bold">
+          Máterias Disponíveis
+        </h3>
+
+        <a href="/tipo-atividade/create">
+          @!button({
+          text: 'Adicionar Matéria',
+          type: 'submit',
+          className: 'text-red-500 rounded-md text-sm ',
+          })
+        </a>
+      </div>
+
+      <div class="relative w-full border-[0.5px] overflow-x-auto rounded-md ">
+        <table class="w-full text-left text-base">
+
+          <thead class="">
+            <tr>
+              <th class=" border-[0.5px] p-2 border-slate-300">Descrição</th>
+              <th class=" border-[0.5px] p-2 border-slate-300">Data de Criação</th>
+              <th class="border-[0.5px] p-2 border-slate-300">Data de Atualização</th>
+              <th class="border-[0.5px] p-2 border-slate-300">Ações</th>
+            </tr>
+
+          </thead>
+          <tbody class="text-gray-500">
+            @each(data in data)
+            <tr class="flex-5">
+              <td class="border-[0.5px] py-1 px-2 flex-1">{{data.descricao}}</td>
+              <td class="border-[0.5px] py-1 px-2 flex-1">{{data.createdAt}}</td>
+              <td class="border-[0.5px] py-1 px-2 flex-1">{{data.updatedAt}}</td>
+              <td class="border-[0.5px] py-1 px-2 flex flex-1 justify-evenly flex-nowrap">
+                <button onclick="window.location.href='/tipo-atividade/{{data.tipoAtividadeId}}'">
+                  <i class="ti ti-edit hover:text-blue-500 duration-150 "></i>
+                </button>
+
+                <form method="post"
+                  action="{{ route('TipoAtividadeController.destroy', [data.tipoAtividadeId], {qs:{_method: 'DELETE'}}) }}"
+                  class="flex justify-center items-center">
+                  {{ csrfField() }}
+
+                  <button type="submit">
+                    <i class="ti ti-trash hover:text-red-500"></i>
+                  </button>
+                </form>
+              </td>
+
+            </tr>
+            @end
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    @endif
+  </div>
+
+</main>
+@end
