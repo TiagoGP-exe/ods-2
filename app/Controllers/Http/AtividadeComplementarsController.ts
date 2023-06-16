@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import AtividadeComplementar from 'App/Models/AtividadeComplementar'
 import CreateAtividadeComplementarValidator from 'App/Validators/CreateAtividadeComplementarValidator'
@@ -16,8 +17,10 @@ export default class AtividadeComplementarsController {
     }
   }
 
-  public async store({ request, response }: HttpContextContract) {
-    const payload = await request.validate(CreateAtividadeComplementarValidator)
+  public async store({ request, auth,response }: HttpContextContract) {
+    const user = auth.user
+    const body = await request.validate(CreateAtividadeComplementarValidator)
+    const payload = {user,...body}
     try {
       const data = await AtividadeComplementar.create(payload)
 
