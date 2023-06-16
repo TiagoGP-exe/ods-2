@@ -52,14 +52,19 @@ Route.get('/tipo_atividade', 'TipoAtividadeController.index')
 
 Route.get('/atividade-complementar', 'AtividadeComplementarController.index')
 
-Route.get('/atividade-complementar/create', async ({ view }) => {
-  return view.render('atividadeComplementar/create')
+
+Route.group(() => {
+  Route.get('/atividade-complementar/create', async ({ view }) => {
+    return view.render('atividadeComplementar/create')
+  })
+
+  Route.post('/atividade-complementar', 'AtividadeComplementarController.store')
+
+  Route.delete('/atividade-complementar/:id', 'AtividadeComplementarController.destroy')
+
+  Route.get('/atividade-complementar/:id', 'AtividadeComplementarController.show')
+
+  Route.put('/atividade-complementar/:id', 'AtividadeComplementarController.update')
 })
-
-Route.post('/atividade-complementar', 'AtividadeComplementarController.store')
-
-Route.delete('/atividade-complementar/:id', 'AtividadeComplementarController.destroy')
-
-Route.get('/atividade-complementar/:id', 'AtividadeComplementarController.show')
-
-Route.put('/atividade-complementar/:id', 'AtividadeComplementarController.update')
+  .middleware(['auth:web'])
+  .prefix('/atividade-complementar')
