@@ -4,7 +4,7 @@ import AtividadeComplementar from 'App/Models/AtividadeComplementar'
 import CreateAtividadeComplementarValidator from 'App/Validators/CreateAtividadeComplementarValidator'
 import UpdateAtividadeComplementarValidator from 'App/Validators/UpdateAtividadeComplementarValidator'
 
-export default class AtividadeComplementarsController {
+export default class AtividadeComplementarController {
   public async index({ response }: HttpContextContract) {
     try {
       const data = await AtividadeComplementar.all()
@@ -18,17 +18,17 @@ export default class AtividadeComplementarsController {
     }
   }
 
-  public async store({ request, auth,response }: HttpContextContract) {
-    const user = auth.user
+  public async store({ request, response, auth }: HttpContextContract) {
     const body = await request.validate(CreateAtividadeComplementarValidator)
-    const payload = {user,...body}
-    try {
-      const data = await AtividadeComplementar.create(payload)
 
-      return response.created({
-        message: 'Atividade Complementar criada',
-        data,
+    try {
+      await AtividadeComplementar.create({
+        ...body,
+        alunoId: auth.user?.alunoId,
+        observacao: body.observacao || '',
       })
+
+      return response.redirect('/')
     } catch (error) {
       return response.badRequest({ message: error.message })
     }

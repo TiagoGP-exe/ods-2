@@ -3,32 +3,22 @@
 
 @set('SubjectsEnrolled', 'true')
 @set('AvailableMaterials', '')
+@set('alunoId', alunoId)
 
-{{--
-public tipoAtividadeId: number
 
-public descricaoAtividade: string
-
-public cargaHoraria: number
-
-public instituicao: string
-
-public anoConclusao: number
-
-public arquivo: AttachmentContract
-
-public observacao: string --}}
 
 @section('body')
 <main class="min-h-screen flex items-start  justify-center">
   @include('partials/header')
 
   <form class='sm:px-8 w-11/12 flex flex-col pt-36 justify-center items-start gap-5  max-w-screen-xl'
-    action="{{ route('AtividadeComplementarsController.store') }}" method="POST">
+    action="{{ route('AtividadeComplementarController.store') }}" method="POST">
     {{ csrfField() }}
     <h2 class=" font-bold text-2xl">
       Adicionar atividade complementar
     </h2>
+    {{flashMessages
+    }}
 
     <div class="w-full flex flex-col  md:flex-row gap-2">
       @!selectfield({
@@ -68,15 +58,23 @@ public observacao: string --}}
       })
     </div>
 
-    @!field({
-    label: 'Observação',
-    name: 'observacao',
-    type: 'text',
-    placeholder: 'Digite uma observação',
-    containerClassName: 'w-full',
-    })
+    <div class="w-full flex flex-col  md:flex-row gap-2">
+      @!field({
+      label: 'Observação',
+      name: 'observacao',
+      type: 'text',
+      placeholder: 'Digite uma observação',
+      containerClassName: 'w-full',
+      })
 
-
+      @!field({
+      label: 'Descrição da atividade',
+      name: 'descricaoAtividade',
+      type: 'text',
+      placeholder: 'Digite uma observação',
+      containerClassName: 'w-full',
+      })
+    </div>
 
     @!button({
     text: 'Submit',

@@ -9,7 +9,7 @@ export default class CreateAtividadeComplementarValidator {
 
   public schema = schema.create({
     cargaHoraria: schema.number(),
-    alunoId: schema.number(),
+    alunoId: schema.number.optional(),
     tipoAtividadeId: schema.number(),
     descricaoAtividade: schema.string(),
     instituicao: schema.string(),
@@ -22,11 +22,11 @@ export default class CreateAtividadeComplementarValidator {
     'cargaHoraria.number': 'O campo carga horária deve ser um número',
     'alunoId.number': 'O campo aluno deve ser um número',
     'tipoAtividadeId.number': 'O campo tipo de atividade deve ser um número',
-    'descricaoAtividade.string': 'O campo descrição da atividade deve ser uma string',
     'instituicao.string': 'O campo instituição deve ser uma string',
     'anoConclusao.number': 'O campo ano de conclusão deve ser um número',
     'observacao.string': 'O campo observação deve ser uma string',
-    'anoConclusao.range':
-      'O campo ano de conclusão deve ser um número entre {{ options.min }} e {{ options.max }}',
+    'anoConclusao.range': `O campo ano de conclusão deve ser um número entre ${
+      actualYear - 100
+    } e ${actualYear + 10}`,
   }
 }
