@@ -82,4 +82,4 @@ Route.group(() => {
   Route.put('/atividade-complementar/:id', 'AtividadeComplementarController.update')
 })
   .middleware(['auth:web'])
-  .prefix('/atividade-complementar')
+
