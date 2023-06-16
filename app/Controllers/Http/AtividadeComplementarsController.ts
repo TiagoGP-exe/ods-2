@@ -2,6 +2,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import AtividadeComplementar from 'App/Models/AtividadeComplementar'
 import CreateAtividadeComplementarValidator from 'App/Validators/CreateAtividadeComplementarValidator'
+import UpdateAtividadeComplementarValidator from 'App/Validators/UpdateAtividadeComplementarValidator'
 
 export default class AtividadeComplementarsController {
   public async index({ response }: HttpContextContract) {
@@ -55,7 +56,7 @@ export default class AtividadeComplementarsController {
   }
 
   public async update({ request, params, response }: HttpContextContract) {
-    const payload = await request.validate(CreateAtividadeComplementarValidator)
+    const payload = await request.validate(UpdateAtividadeComplementarValidator)
 
     const atividade = await AtividadeComplementar.findOrFail(params.id)
 
