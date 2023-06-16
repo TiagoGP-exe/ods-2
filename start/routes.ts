@@ -20,6 +20,8 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+import TipoAtividade from 'App/Models/TipoAtividade'
+import { WORKLOAD_OPTIONS } from './constants'
 
 Route.resource('login', 'LoginController').only(['index', 'store'])
 
@@ -36,6 +38,20 @@ Route.group(() => {
     return view.render('tipoAtividade/create')
   })
 
+  Route.get('/create', async ({ view }) => {
+    const data = await TipoAtividade.all()
+
+    const formatData = data.map((item) => ({
+      value: item.tipoAtividadeId,
+      text: item.descricao,
+    }))
+
+    return view.render('atividadeComplementar/create', {
+      data: formatData,
+      workload: WORKLOAD_OPTIONS,
+    })
+  })
+
   Route.post('/tipo-atividade', 'TipoAtividadeController.store')
 
   Route.delete('/tipo-atividade/:id', 'TipoAtividadeController.destroy')
@@ -48,7 +64,6 @@ Route.group(() => {
 }).middleware(['auth:web'])
 
 Route.get('/tipo_atividade', 'TipoAtividadeController.index')
-
 
 Route.get('/atividade-complementar', 'AtividadeComplementarController.index')
 

@@ -1,0 +1,89 @@
+@layout('layouts/auth')
+@set('title', 'Homepage - ODS2')
+
+@set('SubjectsEnrolled', 'true')
+@set('AvailableMaterials', '')
+
+{{--
+public tipoAtividadeId: number
+
+public descricaoAtividade: string
+
+public cargaHoraria: number
+
+public instituicao: string
+
+public anoConclusao: number
+
+public arquivo: AttachmentContract
+
+public observacao: string --}}
+
+@section('body')
+<main class="min-h-screen flex items-start  justify-center">
+  @include('partials/header')
+
+  <form class='sm:px-8 w-11/12 flex flex-col pt-36 justify-center items-start gap-5  max-w-screen-xl'
+    action="{{ route('AtividadeComplementarsController.store') }}" method="POST">
+    {{ csrfField() }}
+    <h2 class=" font-bold text-2xl">
+      Adicionar atividade complementar
+    </h2>
+
+    <div class="w-full flex flex-col  md:flex-row gap-2">
+      @!selectfield({
+      label: 'Tipo de atividade',
+      name: 'tipoAtividadeId',
+      type: 'text',
+      placeholder: 'Enter your description',
+      containerClassName: 'flex-1',
+      values: data
+      })
+
+      @!selectfield({
+      label: 'Carga horária',
+      name: 'cargaHoraria',
+      type: 'text',
+      placeholder: 'Enter your description',
+      containerClassName: 'flex-1',
+      values: workload,
+      })
+    </div>
+
+    <div class="w-full flex flex-col  md:flex-row gap-2">
+      @!field({
+      label: 'Nome da Instituição',
+      name: 'instituicao',
+      type: 'text',
+      placeholder: 'Digite o nome da instituição',
+      containerClassName: 'w-full',
+      })
+
+      @!field({
+      label: 'Ano de conclusão',
+      name: 'anoConclusao',
+      type: 'number',
+      placeholder: 'Digite o ano de conclusão',
+      containerClassName: 'w-full',
+      })
+    </div>
+
+    @!field({
+    label: 'Observação',
+    name: 'observacao',
+    type: 'text',
+    placeholder: 'Digite uma observação',
+    containerClassName: 'w-full',
+    })
+
+
+
+    @!button({
+    text: 'Submit',
+    type: 'submit',
+    className: 'active:bg-gray-800',
+    })
+  </form>
+
+</main>
+@end

@@ -1,6 +1,8 @@
 /* eslint-disable prettier/prettier */
-import { schema, CustomMessages } from '@ioc:Adonis/Core/Validator'
+import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+
+const actualYear = new Date().getFullYear()
 
 export default class CreateAtividadeComplementarValidator {
   constructor(protected ctx: HttpContextContract) {}
@@ -11,7 +13,7 @@ export default class CreateAtividadeComplementarValidator {
     tipoAtividadeId: schema.number(),
     descricaoAtividade: schema.string(),
     instituicao: schema.string(),
-    anoConclusao: schema.number(),
+    anoConclusao: schema.number([rules.range(actualYear - 100, actualYear + 10)]),
     observacao: schema.string.optional(),
   })
 
@@ -24,5 +26,7 @@ export default class CreateAtividadeComplementarValidator {
     'instituicao.string': 'O campo instituição deve ser uma string',
     'anoConclusao.number': 'O campo ano de conclusão deve ser um número',
     'observacao.string': 'O campo observação deve ser uma string',
+    'anoConclusao.range':
+      'O campo ano de conclusão deve ser um número entre {{ options.min }} e {{ options.max }}',
   }
 }
